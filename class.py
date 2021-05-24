@@ -46,10 +46,12 @@ print(cal2.add(4))
 
 #사칙연산 클래스 만들기
 class FourCal:
-    def setdata(self, first, second):
+    def __init__(self, first, second):
         self.first = first
         self.second = second
-        
+    def setdata(self, first, second):
+        self.first = first
+        self.second = second    
     def add(self):
         result =self.first + self.second
         return result
@@ -62,7 +64,53 @@ class FourCal:
     def sub(self):
         result = self.first - self.second
         return result
-    
-    
-    
 
+print('*'*8)
+# a = FourCal()
+# b = FourCal()
+# print(a)
+# print(type(a))
+# a.setdata(4,2)
+
+# print(a.add())
+
+a = FourCal(4, 2)
+print(a.first)
+print(a.second)
+print(a.add())
+print(a.add())
+
+#상속
+class MoreFourCal(FourCal):
+    def pow(self):
+        result = self.first ** self.second
+        return result
+a = MoreFourCal(4,2)
+print(a.pow())
+
+#메서드 오버라이딩: 부모 클래스에 있는 메서드를 동일한 이름으로 다시 만드는 것. 
+class SafeFourCal(FourCal):
+    def div(self):
+        if self.second == 0:
+            return 0
+        else:
+            return self.first /self.second
+
+a = SafeFourCal(4,0)
+print(a.div())
+
+#클래스 변수
+class Family:
+    lastname = "김"
+print(Family.lastname) #김
+
+a = Family()
+b = Family()
+print(a.lastname)
+print(b.lastname)
+Family.lastname = "박"
+print(a.lastname)
+print(b.lastname)
+id(Family.lastname)
+id(a.lastname)
+id(b.lastname)
